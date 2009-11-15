@@ -4,7 +4,7 @@ Crayon is a set of helper libraries designed to make server-side scripts on your
 
 # Install
 
-couchapp vendor install git://github.com/yssk22/crayone.git
+couchapp vendor install git://github.com/yssk22/crayon.git
 
 # Usage
 
