@@ -26,6 +26,8 @@ just include the core and helper libraries you want to use.
     // !json templates/my_template
     //
     // the same style as CouchApp template but more powerful!
+    // See EJS features at http://embeddedjs.com/
+
     return template(templates.my_template, {});
 
 ### Working with HTTP Errors
@@ -46,9 +48,9 @@ just include the core and helper libraries you want to use.
 
 See spec directory for examples.
 
-# Sharing between the client script.
+# Sharing with the client scripts.
 
-TBD.
+Just copy the lib directory to your _attachments directory.
 
 # License
 
