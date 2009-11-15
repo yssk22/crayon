@@ -16,37 +16,33 @@ just include the core and helper libraries you want to use.
 
     var str = cotent_tag("p", "crayon enables content_tag function in server side.")
 
-## Examples Features
+See API namespace requirements to determine what to be written in !code sentences.
 
-### Templates
+## Global Functions
 
-    // !code vendor/crayon/vendor/ejs/ejs_production.js
-    // !code vendor/crayon/lib/template
+All the functions are separated by the Crayon namespace, and imported as Global.
+If you do not want to import Crayon into the global environment, define the `do_not_import_global` variable as true.
+
+    this.do_not_import_global = true;
+
+    // !code vendor/crayon/lib/core
+    // !code vendor/crayon/lib/escape
+    // !code vendor/crayon/lib/tag
+
+    // This does not work:
+    //   var str = cotent_tag("p", "crayon enables content_tag function in server side.")
     //
-    // !json templates/my_template
-    //
-    // the same style as CouchApp template but more powerful!
-    // See EJS features at http://embeddedjs.com/
+    // Altenative is:
+    var str = Crayon.Tag.cotent_tag("p", "crayon enables content_tag function in server side.")
 
-    return template(templates.my_template, {});
 
-### Working with HTTP Errors
+# More Features
 
-    // !code vendor/crayon/vendor/ejs/ejs_production.js
-    // !code vendor/crayon/lib/template
-    // !code vendor/crayon/lib/errors
-    // !json vendor/crayon/template/errors
+See API documents(doc/build/index.html) or examples(spec/spec.*.js).
 
-    provides("html", function(){
-       return BadRequest({format: "html", reason: "argument error"});
-    }
-    provides("json", function(){
-       return BadRequest({format: "json", reason: "argument error"});
-    }
+# Contribute to more features
 
-### more features
-
-See spec directory for examples.
+Welcome to forks and pull requests!
 
 # Sharing with the client scripts.
 

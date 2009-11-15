@@ -2,7 +2,7 @@
 load("spec/jspec.js");
 
 load('vendor/ejs/ejs_production.js');
-
+load('lib/crayon.js');
 load('lib/escape.js');
 load('lib/template.js');
 load('lib/tag.js');
