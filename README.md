@@ -38,7 +38,8 @@ If you do not want to import Crayon into the global environment, define the `do_
 
 # More Features
 
-See API documents(doc/build/index.html) or examples(spec/spec.*.js).
+See [API documents](http://yssk22.github.com/crayon/api/build/index.html)
+or examples(spec/spec.*.js).
 
 # Contribute to more features
 
