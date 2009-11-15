@@ -42,6 +42,9 @@ just include the core and helper libraries you want to use.
        return BadRequest({format: "json", reason: "argument error"});
     }
 
+### more features
+
+See spec directory for examples.
 
 # Sharing between the client script.
 
