@@ -67,6 +67,23 @@ JSpec.describe("form",  function(){
       });
    });
 
+   describe("text_area", function(){
+      it("should return area tag bound to doc.a.b.c", function(){
+         var doc = {
+            a: {
+               b: {
+                  c: "foo"
+               }
+            }
+         };
+         var result = text_area(doc, "a-b-c");
+         expect(result).should(match, /name="a-b-c"/);
+         expect(result).should(match, /id="a-b-c"/);
+         expect(result).should(match, /\>foo\<\/textarea\>/);
+      });
+   });
+
+
    describe("date_select", function(){
       it("should return select tags bound to doc.a.b.c", function(){
          var doc = {
