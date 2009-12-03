@@ -125,9 +125,9 @@ JSpec.describe("form",  function(){
          }, {
             "name" : "foo"
          }).split("\n");
-         expect(result[0]).should(match,'<select name="foo-year">');
-         expect(result[2]).should(match,'<select name="foo-month">');
-         expect(result[4]).should(match,'<select name="foo-day">');
+         expect(result[0]).should(match,/<select name="foo-year">/);
+         expect(result[2]).should(match,/<select name="foo-month">/);
+         expect(result[4]).should(match,/<select name="foo-day">/);
       });
 });
 });
