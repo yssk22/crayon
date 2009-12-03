@@ -44,8 +44,31 @@ DAY_OPTIONS = '<option value="1">1</option>' +
    '<option value="31">31</option>';
 
 JSpec.describe("form",  function(){
+   describe("text_field", function(){
+      it("should return input tag bound to doc.a.b.c", function(){
+         var doc = {
+            a: {
+               b: {
+                  c: "foo"
+               }
+            }
+         };
+         var result = text_field(doc, "a-b-c");
+         expect(result).should(match, /type="text"/);
+         expect(result).should(match, /name="a-b-c"/);
+         expect(result).should(match, /id="a-b-c"/);
+         expect(result).should(match, /value="foo"/);
+      });
+      it("should return input tag with the empty value if doc is undefined.", function(){
+         var result = text_field(null, "a-b-c");
+         expect(result).should(match, /value=""/);
+         result = text_field(undefined, "a-b-c");
+         expect(result).should(match, /value=""/);
+      });
+   });
+
    describe("select_date", function(){
-      it("should three select tags with no options", function(){
+      it("should return three select tags with no options", function(){
          var result = select_date(null).split("\n");
          // expect(result[0]).should(be,
          //                         '<select name="date-year">' +
@@ -66,7 +89,7 @@ JSpec.describe("form",  function(){
 
       });
 
-      it("should three select tags with specified year range.", function(){
+      it("should return three select tags with specified year range.", function(){
          var result = select_date(null, {
             start_year: 2000,
             end_year: 2001
@@ -87,7 +110,7 @@ JSpec.describe("form",  function(){
                                   DAY_OPTIONS +
                                   '</select>');
       });
-      it("should three select tags with specified separator.", function(){
+      it("should return three select tags with specified separator.", function(){
          var result = select_date(null, {
             date_separator : "-"
          }).split("\n");
@@ -95,7 +118,7 @@ JSpec.describe("form",  function(){
          expect(result[3]).should(be,"-");
       });
 
-      it("should three select tags with specified separator.", function(){
+      it("should return three select tags with specified separator.", function(){
          var result = select_date(null, {
             date_separator : "-"
          }).split("\n");
@@ -103,7 +126,7 @@ JSpec.describe("form",  function(){
          expect(result[3]).should(be,"-");
       });
 
-      it("should three select tags with the date selected.", function(){
+      it("should return three select tags with the date selected.", function(){
          var result = select_date(new Date("1940/06/05"), {
          }).split("\n");
          expect(result[0]).should(match, /value="1940" selected="selected"/);
@@ -120,7 +143,7 @@ JSpec.describe("form",  function(){
          expect(result[4]).should(match, /value=""/);
       });
 
-      it("should three select tags with modified names.", function(){
+      it("should return three select tags with modified names.", function(){
          var result = select_date(new Date("1940/06/05"), {
          }, {
             "name" : "foo"
