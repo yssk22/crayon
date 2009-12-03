@@ -67,6 +67,22 @@ JSpec.describe("form",  function(){
       });
    });
 
+   describe("date_select", function(){
+      it("should return select tags bound to doc.a.b.c", function(){
+         var doc = {
+            a: {
+               b: {
+                  c: "2009/08/07"
+               }
+            }
+         };
+         var result = date_select(doc, "a-b-c").split("\n");
+         expect(result[0]).should(match, /value="2009" selected="selected"/);
+         expect(result[2]).should(match, /value="8" selected="selected"/);
+         expect(result[4]).should(match, /value="7" selected="selected"/);
+      });
+   });
+
    describe("select_date", function(){
       it("should return three select tags with no options", function(){
          var result = select_date(null).split("\n");
