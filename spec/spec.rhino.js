@@ -7,6 +7,7 @@ load('lib/escape.js');
 load('lib/template.js');
 load('lib/tag.js');
 load('lib/error.js');
+load('lib/form.js');
 
 JSpec
   .exec('spec/spec.crayon.js')
@@ -14,5 +15,6 @@ JSpec
   .exec('spec/spec.template.js')
   .exec('spec/spec.tag.js')
   .exec('spec/spec.error.js')
+  .exec('spec/spec.form.js')
   .run({ formatter: JSpec.formatters.Terminal })
   .report();
