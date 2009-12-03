@@ -43,17 +43,57 @@ DAY_OPTIONS = '<option value="1">1</option>' +
    '<option value="30">30</option>' +
    '<option value="31">31</option>';
 
+FORM_DOC = {
+   a: {
+      b: {
+         c: "foo"
+      }
+   }
+};
+
 JSpec.describe("form",  function(){
+   describe("check_box", function(){
+      it("should return checked tag.", function(){
+         var result = check_box(FORM_DOC, "a-b-c", {}, "foo", "bar").split("\n");
+         expect(result[0]).should(match, /type="checkbox"/);
+         expect(result[0]).should(match, /name="a-b-c"/);
+         expect(result[0]).should(match, /id="a-b-c"/);
+         expect(result[0]).should(match, /value="&quot;foo&quot;"/);
+         expect(result[0]).should(match, /checked="checked"/);
+      });
+      it("should return unchecked tag.", function(){
+         var result = check_box(FORM_DOC, "e", {}, "foo", "bar").split("\n");
+         expect(result[0]).should(match, /type="checkbox"/);
+         expect(result[0]).should(match, /name="e"/);
+         expect(result[0]).should(match, /id="e"/);
+         expect(result[0]).should(match, /value="&quot;foo&quot;"/);
+         expect(/checked/.test(result[0])).should(be_false);
+      });
+   });
+
+   describe("radio", function(){
+      it("should return checked tag.", function(){
+         var result = radio_button(FORM_DOC, "a-b-c", "foo");
+         expect(result).should(match, /type="radio"/);
+         expect(result).should(match, /name="a-b-c"/);
+         expect(result).should(match, /id="a-b-c"/);
+         expect(result).should(match, /value="&quot;foo&quot;"/);
+         expect(result).should(match, /checked="checked"/);
+      });
+      it("should return unchecked tag.", function(){
+         var result = radio_button(FORM_DOC, "a-b-c", "bar");
+         expect(result).should(match, /type="radio"/);
+         expect(result).should(match, /name="a-b-c"/);
+         expect(result).should(match, /id="a-b-c"/);
+         expect(result).should(match, /value="&quot;bar&quot;"/);
+         expect(/checked/.test(result)).should(be_false);
+      });
+   });
+
+
    describe("text_field", function(){
       it("should return input tag bound to doc.a.b.c", function(){
-         var doc = {
-            a: {
-               b: {
-                  c: "foo"
-               }
-            }
-         };
-         var result = text_field(doc, "a-b-c");
+         var result = text_field(FORM_DOC, "a-b-c");
          expect(result).should(match, /type="text"/);
          expect(result).should(match, /name="a-b-c"/);
          expect(result).should(match, /id="a-b-c"/);
@@ -69,14 +109,7 @@ JSpec.describe("form",  function(){
 
    describe("text_area", function(){
       it("should return area tag bound to doc.a.b.c", function(){
-         var doc = {
-            a: {
-               b: {
-                  c: "foo"
-               }
-            }
-         };
-         var result = text_area(doc, "a-b-c");
+         var result = text_area(FORM_DOC, "a-b-c");
          expect(result).should(match, /name="a-b-c"/);
          expect(result).should(match, /id="a-b-c"/);
          expect(result).should(match, /\>foo\<\/textarea\>/);
@@ -86,13 +119,7 @@ JSpec.describe("form",  function(){
 
    describe("date_select", function(){
       it("should return select tags bound to doc.a.b.c", function(){
-         var doc = {
-            a: {
-               b: {
-                  c: "2009/08/07"
-               }
-            }
-         };
+         var doc = {a: {b: {c: "2009/08/07"}}};
          var result = date_select(doc, "a-b-c").split("\n");
          expect(result[0]).should(match, /value="2009" selected="selected"/);
          expect(result[2]).should(match, /value="8" selected="selected"/);
