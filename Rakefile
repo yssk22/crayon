@@ -6,6 +6,7 @@ task :doc do
   sh("rm -fr /tmp/crayon_doc")
   sh("cp -r doc /tmp/crayon_doc")
   sh("git checkout gh-pages")
+  sh("rm -r api")
   sh("cp -r /tmp/crayon_doc api")
 end
 
