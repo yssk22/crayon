@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - Crayon.Escape</title>
+		<title>JsDoc Reference - Crayon.Validate</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -212,23 +212,23 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Namespace Crayon.Escape
+				Namespace Crayon.Validate
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
 			
-				Provides escaping utilities.
+				Holds functionality for validations
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/lib_escape.js.html">escape.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/lib_validate.js.html">validate.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Crayon.Escape.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Crayon.Validate.">
 				<caption>Namespace Summary</caption>
 				<thead>
 					<tr>
@@ -241,7 +241,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/Crayon.Escape.html#constructor">Crayon.Escape</a></b>
+								<b><a href="../symbols/Crayon.Validate.html#constructor">Crayon.Validate</a></b>
 							</div>
 							<div class="description"></div>
 						</td>
@@ -257,7 +257,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Crayon.Escape.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Crayon.Validate.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -270,36 +270,18 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">Crayon.Escape.<b><a href="../symbols/Crayon.Escape.html#.h">h</a></b>()
+								<div class="fixedFont">Crayon.Validate.<b><a href="../symbols/Crayon.Validate.html#.require">require</a></b>(doc, field, message)
 								</div>
-								<div class="description">alias for html_escape</div>
+								<div class="description">Validate the field value is neither undefined nor null.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">Crayon.Escape.<b><a href="../symbols/Crayon.Escape.html#.html_escape">html_escape</a></b>(s)
+								<div class="fixedFont">Crayon.Validate.<b><a href="../symbols/Crayon.Validate.html#.unchanged">unchanged</a></b>(newDoc, oldDoc, field, message)
 								</div>
-								<div class="description">Escapes html special charactors.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">Crayon.Escape.<b><a href="../symbols/Crayon.Escape.html#.j">j</a></b>()
-								</div>
-								<div class="description">alias for json_escape</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">Crayon.Escape.<b><a href="../symbols/Crayon.Escape.html#.json_escape">json_escape</a></b>(s)
-								</div>
-								<div class="description">Escapes json special charactors.</div>
+								<div class="description">Validate the field value is not changed.</div>
 							</td>
 						</tr>
 					
@@ -320,7 +302,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>Crayon.Escape</b>
+						<b>Crayon.Validate</b>
 				</div>
 				
 				<div class="description">
@@ -358,40 +340,15 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name=".h"> </a>
+					<a name=".require"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<span class="light">Crayon.Escape.</span><b>h</b>()
+					<span class="light">Crayon.Validate.</span><b>require</b>(doc, field, message)
 					
 					</div>
 					<div class="description">
-						alias for html_escape
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name=".html_escape"> </a>
-					<div class="fixedFont">&lt;static&gt; 
-					
-					
-					<span class="light">Crayon.Escape.</span><b>html_escape</b>(s)
-					
-					</div>
-					<div class="description">
-						Escapes html special charactors.
+						Validate the field value is neither undefined nor null.
 						
 						
 					</div>
@@ -403,7 +360,19 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>s</b>
+									<b>doc</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>field</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>message</b>
 									
 								</dt>
 								<dd></dd>
@@ -419,40 +388,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name=".j"> </a>
+					<a name=".unchanged"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<span class="light">Crayon.Escape.</span><b>j</b>()
+					<span class="light">Crayon.Validate.</span><b>unchanged</b>(newDoc, oldDoc, field, message)
 					
 					</div>
 					<div class="description">
-						alias for json_escape
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name=".json_escape"> </a>
-					<div class="fixedFont">&lt;static&gt; 
-					
-					
-					<span class="light">Crayon.Escape.</span><b>json_escape</b>(s)
-					
-					</div>
-					<div class="description">
-						Escapes json special charactors.
+						Validate the field value is not changed.
 						
 						
 					</div>
@@ -464,7 +408,25 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>s</b>
+									<b>newDoc</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>oldDoc</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>field</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>message</b>
 									
 								</dt>
 								<dd></dd>
@@ -492,7 +454,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.0 on Sat Dec 05 2009 00:01:29 GMT+0900 (JST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.0 on Sat Dec 05 2009 00:01:30 GMT+0900 (JST)
 		</div>
 	</body>
 </html>
