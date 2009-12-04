@@ -1,10 +1,11 @@
 # Crayon: Server Side JavaScript helpers for CouchApps
 
 Crayon is a set of helper libraries designed to make server-side scripts on your CouchApp more relaxed.
+This library API is inspired by ActionView from Ruby on Rails.
 
 # Install
 
-couchapp vendor install git://github.com/yssk22/crayon.git
+   couchapp vendor install git://github.com/yssk22/crayon.git
 
 # Usage
 
@@ -17,6 +18,9 @@ just include the core and helper libraries you want to use.
     var str = cotent_tag("p", "crayon enables content_tag function in server side.")
 
 See API namespace requirements to determine what to be written in !code sentences.
+
+If you hack CouchApp to extract !code macro recursively (see [my couchapp fork](http://github.com/yssk22/crayon),
+you need only one !code macro you want to use.
 
 ## Global Functions
 
@@ -35,15 +39,15 @@ If you do not want to import Crayon into the global environment, define the `do_
     // Altenative is:
     var str = Crayon.Tag.cotent_tag("p", "crayon enables content_tag function in server side.")
 
-
-# More Features
+# Features
 
 See [API documents](http://yssk22.github.com/crayon/api/build/index.html)
 or examples(spec/spec.*.js).
 
 # Contribute to more features
 
-Welcome to forks and pull requests!
+Welcome to forks and pull requests! or please create issues 
+with the method name you want to use.
 
 # Sharing with the client scripts.
 
