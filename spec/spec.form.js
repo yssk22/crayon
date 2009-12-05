@@ -108,7 +108,7 @@ JSpec.describe("form",  function(){
    });
 
    describe("text_area", function(){
-      it("should return area tag bound to doc.a.b.c", function(){
+      it("should return textarea tag bound to doc.a.b.c", function(){
          var result = text_area(FORM_DOC, "a-b-c");
          expect(result).should(match, /name="a-b-c"/);
          expect(result).should(match, /id="a-b-c"/);
@@ -138,12 +138,12 @@ JSpec.describe("form",  function(){
          //                         '</select>');
          expect(result[1]).should(be,"/");
          expect(result[2]).should(be,
-                                  '<select name="date-month">' +
+                                  '<select name="date-month" crayon_type="date_select_month">' +
                                   MONTH_OPTIONS +
                                   '</select>');
          expect(result[3]).should(be,"/");
          expect(result[4]).should(be,
-                                  '<select name="date-day">' +
+                                  '<select name="date-day" crayon_type="date_select_day">' +
                                   DAY_OPTIONS +
                                   '</select>');
 
@@ -155,18 +155,18 @@ JSpec.describe("form",  function(){
             end_year: 2001
          }).split("\n");
          expect(result[0]).should(be,
-                                  '<select name="date-year">' +
+                                  '<select name="date-year" crayon_type="date_select_year">' +
                                   '<option value="2000">2000</option>' +
                                   '<option value="2001">2001</option>' +
                                   '</select>');
          expect(result[1]).should(be,"/");
          expect(result[2]).should(be,
-                                  '<select name="date-month">' +
+                                  '<select name="date-month" crayon_type="date_select_month">' +
                                   MONTH_OPTIONS +
                                   '</select>');
          expect(result[3]).should(be,"/");
          expect(result[4]).should(be,
-                                  '<select name="date-day">' +
+                                  '<select name="date-day" crayon_type="date_select_day">' +
                                   DAY_OPTIONS +
                                   '</select>');
       });
@@ -208,9 +208,9 @@ JSpec.describe("form",  function(){
          }, {
             "name" : "foo"
          }).split("\n");
-         expect(result[0]).should(match,/<select name="foo-year">/);
-         expect(result[2]).should(match,/<select name="foo-month">/);
-         expect(result[4]).should(match,/<select name="foo-day">/);
+         expect(result[0]).should(match,/<select name="foo-year" crayon_type="date_select_year">/);
+         expect(result[2]).should(match,/<select name="foo-month" crayon_type="date_select_month">/);
+         expect(result[4]).should(match,/<select name="foo-day" crayon_type="date_select_day">/);
       });
-});
+   });
 });
