@@ -9,35 +9,10 @@ This library API is inspired by ActionView from Ruby on Rails.
 
 # Usage
 
-just include the core and helper libraries you want to use.
-
-    // !code vendor/crayon/lib/core
-    // !code vendor/crayon/lib/escape
-    // !code vendor/crayon/lib/tag
-
-    var str = cotent_tag("p", "crayon enables content_tag function in server side.")
-
-See API namespace requirements to determine what to be written in !code sentences.
-
-If you hack CouchApp to extract !code macro recursively (see [my couchapp fork](http://github.com/yssk22/crayon),
-you need only one !code macro you want to use.
-
-## Global Functions
-
-All the functions are separated by the Crayon namespace, and imported as Global.
-If you do not want to import Crayon into the global environment, define the `do_not_import_global` variable as true.
-
-    this.do_not_import_global = true;
-
-    // !code vendor/crayon/lib/core
-    // !code vendor/crayon/lib/escape
-    // !code vendor/crayon/lib/tag
-
-    // This does not work:
-    //   var str = cotent_tag("p", "crayon enables content_tag function in server side.")
-    //
-    // Altenative is:
-    var str = Crayon.Tag.cotent_tag("p", "crayon enables content_tag function in server side.")
+just require libraries you want to use.
+   
+   r = require('vendor/crayon/lib/foo.js');
+   r.bar()
 
 # Features
 
