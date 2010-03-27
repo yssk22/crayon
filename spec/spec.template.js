@@ -1,6 +1,6 @@
 JSpec.describe("template", function(){
    before_each(function(){
-      m = require('lib/template.js');
+      m = require('lib/template');
    });
 
    describe("render", function(){

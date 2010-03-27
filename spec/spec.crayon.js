@@ -1,6 +1,6 @@
 JSpec.describe("Crayon",  function(){
    before_each(function(){
-      m = require('lib/crayon.js');
+      m = require('lib/crayon');
    });
 
    describe("extractOptions", function(){

@@ -10,8 +10,21 @@
 // WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 // License for the specific language governing permissions and limitations under
 // the License.
+
 sandbox = this;
 function require(name, parent){
+   // Application Context:
+   //    root should be vendor/crayon/
+   //    name is a key without an extension.
+   //
+   // Test Context:
+   //    root should be .
+   //    name is a filename with ".js" extension
+   if( name.lastIndexOf("vendor/crayon/") == 0 ){
+      name = name.substr("vendor/crayon/".length);
+   }
+   name = name + ".js";
+   print("loading " + name);
    var exports = {};
    var source = readFile(name);
    var s = "function(exports, require){" + source + "}";
