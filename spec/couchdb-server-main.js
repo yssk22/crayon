@@ -36,4 +36,5 @@ function require(name, parent){
 }
 
 function log(msg){
+   print(msg);
 }
