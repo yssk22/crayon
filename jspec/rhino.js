@@ -1,14 +1,6 @@
 // load('/Library/Ruby/Gems/1.8/gems/jspec-2.11.12/lib/jspec.js');
 load("spec/jspec.js");
 load("spec/couchdb-server-main.js");
-load('vendor/ejs/ejs.js');
-load('vendor/showdown/src/showdown.js');
-load('lib/crayon.js');
-load('lib/escape.js');
-load('lib/template.js');
-load('lib/tag.js');
-load('lib/error.js');
-load('lib/form.js');
 
 // overwrite jspec matcher to support Crayon core extensions
 JSpec.addMatchers({
@@ -19,8 +11,8 @@ JSpec
   .exec('spec/spec.crayon.js')
   .exec('spec/spec.escape.js')
   .exec('spec/spec.template.js')
-  .exec('spec/spec.tag.js')
-  .exec('spec/spec.error.js')
-  .exec('spec/spec.form.js')
+//  .exec('spec/spec.tag.js')
+//  .exec('spec/spec.error.js')
+//  .exec('spec/spec.form.js')
   .run({ formatter: JSpec.formatters.Terminal })
   .report();
