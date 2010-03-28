@@ -417,3 +417,6 @@ return "~E"+_b6+"E";
 };
 };
 
+
+// CouchDB export 
+exports.Showdown = Showdown;

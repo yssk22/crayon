@@ -1,5 +1,5 @@
-JSpec.describe("Crayon",  function(){
-   before_each(function(){
+JSpec.describe("crayon",  function(){
+   before(function(){
       m = require('lib/crayon');
    });
 

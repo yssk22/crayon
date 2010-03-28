@@ -1,5 +1,5 @@
 JSpec.describe("escape",  function(){
-   before_each(function(){
+   before(function(){
       m = require('lib/escape');
    });
 

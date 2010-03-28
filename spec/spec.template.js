@@ -1,5 +1,5 @@
 JSpec.describe("template", function(){
-   before_each(function(){
+   before(function(){
       m = require('lib/template');
    });
 

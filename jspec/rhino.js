@@ -11,6 +11,7 @@ JSpec
   .exec('spec/spec.crayon.js')
   .exec('spec/spec.escape.js')
   .exec('spec/spec.template.js')
+  .exec('spec/spec.text.js')
 //  .exec('spec/spec.tag.js')
 //  .exec('spec/spec.error.js')
 //  .exec('spec/spec.form.js')
