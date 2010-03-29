@@ -243,7 +243,7 @@ var Mustache = function() {
 
     is_object: function(a) {
        //return a && typeof a == "object"
-       return a && toString.call(obj) === "[object Object]";
+       return a && toString.call(a) === "[object Object]";
     },
 
     /*
