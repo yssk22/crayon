@@ -101,10 +101,7 @@ var Mustache = function() {
       // for each {{#foo}}{{/foo}} section do...
       return template.replace(regex, function(match, name, content) {
         var value = that.find(name, context);
-         log("name:" + name);
-         log(value);
         if(that.is_array(value)) { // Enumerable, Let's loop!
-           log("found array");
           return that.map(value, function(row) {
             return that.render(content, that.merge(context,
                     that.create_context(row)), partials, true);
@@ -112,7 +109,6 @@ var Mustache = function() {
         } else if(value) { // boolean section
           return that.render(content, context, partials, true);
         } else {
-           log("not matched.");
           return "";
         }
       });
@@ -242,8 +238,7 @@ var Mustache = function() {
     },
 
     is_object: function(a) {
-       //return a && typeof a == "object"
-       return a && toString.call(a) === "[object Object]";
+      return a && typeof a == "object"
     },
 
     /*
@@ -252,10 +247,9 @@ var Mustache = function() {
       frames. Frames can suck it, we use the simple version.
     */
     is_array: function(a) {
-//      return (a &&
-//        typeof a === "object" &&
-//        a.constructor === Array);
-        return a && toString.call(a) === "[object Array]";
+      return (a &&
+        typeof a === "object" &&
+        a.constructor === Array);
     },
 
     /*

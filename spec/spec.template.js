@@ -4,13 +4,13 @@ JSpec.describe("template", function(){
    });
 
    describe("render", function(){
-      it("should returns string without bindings", function(){
+      it("should return string without bindings", function(){
          var text = "foobar";
          var rendered = m.render(text);
          expect(rendered).should(eql, text);
       });
 
-      it("should returns string with bindings", function(){
+      it("should return string with bindings", function(){
          var bindings = {
             bar : "foo"
          };
@@ -18,5 +18,6 @@ JSpec.describe("template", function(){
          var rendered = m.render(text, bindings);
          expect(rendered).should(eql, "foofoo");
       });
+
    });
 });
