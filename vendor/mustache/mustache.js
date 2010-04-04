@@ -101,10 +101,7 @@ var Mustache = function() {
       // for each {{#foo}}{{/foo}} section do...
       return template.replace(regex, function(match, name, content) {
         var value = that.find(name, context);
-         log("name:" + name);
-         log(value);
-        if(that.is_array(value)) { // Enumerable, Let's loop!
-           log("found array");
+         if(that.is_array(value)) { // Enumerable, Let's loop!
           return that.map(value, function(row) {
             return that.render(content, that.merge(context,
                     that.create_context(row)), partials, true);
@@ -112,7 +109,6 @@ var Mustache = function() {
         } else if(value) { // boolean section
           return that.render(content, context, partials, true);
         } else {
-           log("not matched.");
           return "";
         }
       });
