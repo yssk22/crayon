@@ -31,11 +31,27 @@ load("spec/couchdb-server-main.js");
                   attribs.failures += spec.passed() ? 0 : 1;
                   attribs.specs += 1;
                   attribs.time += spec.time || 0;
-                  return content +'    <testcase '
-                     + 'name="'+ e(spec.description) +'" '
-                     + 'assertions="'+spec.assertions.length + '" '
-                     + 'time="' + spec.time + '"'
-                     + '/>\n';
+                  if( spec.passed() ){
+                     return content +'    <testcase '
+                        + 'name="'+ e(spec.description) +'" '
+                        + 'assertions="'+spec.assertions.length + '" '
+                        + 'time="' + spec.time + '"'
+                        + '/>\n';
+                  }else{
+                     content += '    <testcase '
+                        + 'name="'+ e(spec.description) +'" '
+                        + 'assertions="'+spec.assertions.length + '" '
+                        + 'time="' + spec.time + '"'
+                        + '>\n';
+                     content += JSpec.inject(spec.assertions, '', function(c, assertion){
+                        if( !assertion.passed ){
+                           c += '        <failure message="' + e(assertion.message) + '">' + e(assertion.message) + '</failure>\n';
+                        }
+                        return c;
+                     });
+                     content += '    </testcase>\n';
+                     return content;
+                  }
                });
                w.write('  <testsuite');
                for (var key in attribs) {
