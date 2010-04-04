@@ -1,12 +1,7 @@
 /*
-  Shamless port of http://github.com/defunkt/mustache
-  by Jan Lehnardt <jan@apache.org>,
-     Alexander Lang <alex@upstream-berlin.com>,
-     Sebastian Cohnen <sebastian.cohnen@googlemail.com>
+  mustache.js — Logic-less templates in JavaScript
 
-  Thanks @defunkt for the awesome code.
-
-  See http://github.com/defunkt/mustache for more info.
+  See http://mustache.github.com/ for more info.
 */
 
 var Mustache = function() {
@@ -17,6 +12,9 @@ var Mustache = function() {
     ctag: "}}",
     pragmas: {},
     buffer: [],
+    pragmas_implemented: {
+      "IMPLICIT-ITERATOR": true
+    },
 
     render: function(template, context, partials, in_recursion) {
       // fail fast
@@ -25,6 +23,7 @@ var Mustache = function() {
           return template;
         } else {
           this.send(template);
+          return;
         }
       }
 
@@ -63,6 +62,10 @@ var Mustache = function() {
       var regex = new RegExp(this.otag + "%([\\w_-]+) ?([\\w]+=[\\w]+)?"
         + this.ctag);
       return template.replace(regex, function(match, pragma, options) {
+        if(!that.pragmas_implemented[pragma]) {
+          throw({message: "This implementation of mustache doesn't understand the '"
+            + pragma + "' pragma"});
+        }
         that.pragmas[pragma] = {};
         if(options) {
           var opts = options.split("=");
@@ -77,11 +80,11 @@ var Mustache = function() {
       Tries to find a partial in the global scope and render it
     */
     render_partial: function(name, context, partials) {
-      if(typeof(context[name]) != "object") {
-        throw({message: "subcontext for '" + name + "' is not an object"});
-      }
       if(!partials || !partials[name]) {
-        throw({message: "unknown_partial"});
+        throw({message: "unknown_partial '" + name + "'"});
+      }
+      if(typeof(context[name]) != "object") {
+        return partials[name];
       }
       return this.render(partials[name], context[name], partials, true);
     },
@@ -101,7 +104,7 @@ var Mustache = function() {
       // for each {{#foo}}{{/foo}} section do...
       return template.replace(regex, function(match, name, content) {
         var value = that.find(name, context);
-         if(that.is_array(value)) { // Enumerable, Let's loop!
+        if(that.is_array(value)) { // Enumerable, Let's loop!
           return that.map(value, function(row) {
             return that.render(content, that.merge(context,
                     that.create_context(row)), partials, true);
@@ -149,7 +152,10 @@ var Mustache = function() {
            this.send(lines[i]);
          }
        }
-       return lines.join("\n");
+
+       if(in_recursion) {
+         return lines.join("\n");
+       }
     },
 
     set_delimiters: function(delimiters) {
@@ -194,7 +200,7 @@ var Mustache = function() {
       Does away with nasty characters
     */
     escape: function(s) {
-      return s.toString().replace(/[&"<>\\]/g, function(s) {
+      return ((s == null) ? "" : s).toString().replace(/[&"<>\\]/g, function(s) {
         switch(s) {
           case "&": return "&amp;";
           case "\\": return "\\\\";;
@@ -232,26 +238,17 @@ var Mustache = function() {
       } else if(this.pragmas["IMPLICIT-ITERATOR"]) {
         var iterator = this.pragmas["IMPLICIT-ITERATOR"].iterator || ".";
         var ctx = {};
-        ctx[iterator] = _context
+        ctx[iterator] = _context;
         return ctx;
       }
     },
 
     is_object: function(a) {
-       //return a && typeof a == "object"
-       return a && toString.call(a) === "[object Object]";
+      return a && typeof a == "object";
     },
 
-    /*
-      Thanks Doug Crockford
-      JavaScript — The Good Parts lists an alternative that works better with
-      frames. Frames can suck it, we use the simple version.
-    */
     is_array: function(a) {
-//      return (a &&
-//        typeof a === "object" &&
-//        a.constructor === Array);
-        return a && toString.call(a) === "[object Array]";
+      return Object.prototype.toString.call(a) === '[object Array]';
     },
 
     /*
@@ -266,11 +263,11 @@ var Mustache = function() {
     */
     map: function(array, fn) {
       if (typeof array.map == "function") {
-        return array.map(fn)
+        return array.map(fn);
       } else {
         var r = [];
         var l = array.length;
-        for(i=0;i<l;i++) {
+        for(var i=0;i<l;i++) {
           r.push(fn(array[i]));
         }
         return r;
@@ -280,7 +277,7 @@ var Mustache = function() {
 
   return({
     name: "mustache.js",
-    version: "0.2.2",
+    version: "0.2.3",
 
     /*
       Turns a template and view into HTML
@@ -291,8 +288,9 @@ var Mustache = function() {
         renderer.send = send_fun;
       }
       renderer.render(template, view, partials);
-      return renderer.buffer.join("\n");
+      if(!send_fun) {
+        return renderer.buffer.join("\n");
+      }
     }
   });
 }();
-exports.Mustache = Mustache;

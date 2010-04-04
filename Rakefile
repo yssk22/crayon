@@ -12,5 +12,9 @@ end
 
 desc("Run jspec for spec testing.")
 task :spec do
-  sh("jspec run --rhino")
+  config = File.join(File.dirname(__FILE__), "jspec/rhino.js")
+  if ENV["OUTPUT"] == "JUnit"
+    config = File.join(File.dirname(__FILE__), "jspec/rhinoxml.js")
+  end
+  sh("jspec run --rhino '#{config}'")
 end
